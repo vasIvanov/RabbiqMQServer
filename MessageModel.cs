@@ -14,11 +14,5 @@ namespace RabbiqMQServer
         [Key(1)]
         public int MessageLength { get; set; }
 
-        public MessageModel(string message, int length)
-        {
-            Message = message;
-            MessageLength = length;
-        }
-
     }
 }

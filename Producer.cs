@@ -25,7 +25,8 @@ namespace RabbiqMQServer
         public void Publish(string message)
         {
             Init();
-            var msgObj = new MessageModel(message, 0);
+            var msgObj = new MessageModel();
+            msgObj.Message = message;
             var serialize = MessagePackSerializer.Serialize(msgObj);
             _model.ExchangeDeclare("RabbitMQServer", ExchangeType.Fanout, false, false);
             _model.QueueDeclare("task_queue", true, false);

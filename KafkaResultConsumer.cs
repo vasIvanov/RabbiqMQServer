@@ -36,8 +36,8 @@ namespace RabbiqMQServer
                 consumer.Subscribe("messageResult");
                 var consumeResult = consumer.Consume();
                 var deserializedMessage = MessagePackSerializer.Deserialize<MessageModel>(consumeResult.Message.Value);
+                Console.WriteLine("Message Consumed from Kafka: {0} Length: {1}", deserializedMessage.Message, deserializedMessage.MessageLength);
                 _result.Enqueue(deserializedMessage);
-                Console.WriteLine("Message: {0} Length: {1}", deserializedMessage.Message, deserializedMessage.MessageLength);
             });
 
       

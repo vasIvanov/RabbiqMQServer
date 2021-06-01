@@ -27,15 +27,11 @@ namespace RabbiqMQServer
 
             var rabbit = new Producer();
             var kafka = new KafkaResultConsumer();
-
             kafka.ConsumeFromKafka();
-            rabbit.Publish("message");
 
-
+            rabbit.Publish("msg");
 
             Console.ReadKey();
- 
-
         }
     }
 }
