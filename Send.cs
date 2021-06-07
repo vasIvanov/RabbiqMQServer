@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 
 namespace RabbiqMQServer
 {
     class Send
     {
+        private static System.Timers.Timer aTimer;
         public static void Main()
         {
             //var factory = new ConnectionFactory() { HostName = "localhost" };
@@ -28,10 +30,12 @@ namespace RabbiqMQServer
             var rabbit = new Producer();
             var kafka = new KafkaResultConsumer();
             kafka.ConsumeFromKafka();
-
-            rabbit.Publish("msg");
-
-            Console.ReadKey();
+            while (true)
+            {
+                Console.WriteLine("Enter message to publish in Rabbit");
+                var msg = Console.ReadLine();
+                rabbit.Publish(msg);
+            }
         }
     }
 }
